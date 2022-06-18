@@ -1,0 +1,23 @@
+@layout('layout')
+@section('content')
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Create blog article</h3>
+			</div>
+			<div class="panel-body">
+				<form action="{{ route('blog.store') }}" method="post" enctype="multipart/form-data">
+					@!component('components.input',{ name: 'title', 'label': 'Title' })
+					@!component('components.input',{ name: 'content', 'label': 'Content', 'type': 'textarea' })
+					<div class="mb-3 form-check">
+						<input type="checkbox" class="form-check-input" id="online" name="online">
+						<label class="form-check-label" for="online">Publish article online</label>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit and create</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+@endsection

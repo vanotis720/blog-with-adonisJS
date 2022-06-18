@@ -20,4 +20,8 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', 'BlogController.index').as('blog.index')
+Route.get('/', 'BlogController.index').as('home')
+Route.get('/create', 'BlogController.create').as('blog.create')
+Route.post('/create', 'BlogController.store').as('blog.store')
+Route.get('/edit/:id', 'BlogController.edit').as('blog.edit')
+Route.post('/edit/:id', 'BlogController.update').as('blog.update')

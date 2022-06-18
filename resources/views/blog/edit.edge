@@ -1,0 +1,26 @@
+@layout('layout')
+@section('content')
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Edit article : {{ post.title }}</h3>
+            </div>
+            <div class="panel-body">
+                <form action="{{ route('blog.update', {id: post.id}) }}" method="post" enctype="multipart/form-data">
+
+                    @!component('components.input',{ name: 'title', 'label': 'Title', 'value': post.title })
+                    @!component('components.input',{ name: 'content', 'label': 'Content', 'value': post.content, 'type':
+                    'textarea' })
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="online" name="online" {{ post.online
+                            ? 'checked' : '' }}>
+                        <label class="form-check-label" for="online">Publish article online</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">update and save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
