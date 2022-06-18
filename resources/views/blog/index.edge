@@ -7,14 +7,25 @@
 				<h3 class="panel-title">blog article</h3>
 			</div>
 			<div class="panel-body">
-				<a class="btn btn-primary" href="{{ route('blog.create') }}">Create New</a>
+				<a class="btn btn-primary my-3" href="{{ route('blog.create') }}">Create New</a>
 
 				<ul class="list-group mb-3">
 					@each(post in posts)
 					<li class="list-group-item">
 						<div class="d-flex justify-content-between align-items-center">
 							<a href="{{ route('blog.edit', {id: post.id}) }}">{{post.title}}</a>
+							<form action="{{ route('blog.edit', {id: post.id}) }}?_method=DELETE" method="POST">
+								<button class="btn btn-danger" type="submit">Supprimer</button>
+							</form>
 						</div>
+					</li>
+					@endeach
+				</ul>
+
+				<ul class="pagination">
+					@each(anchor in posts.getUrlsForRange(1, posts.lastPage))
+					<li class="page-item ">
+						<a href="{{ anchor.url }}" class="page-link">{{ anchor.page }}</a>
 					</li>
 					@endeach
 				</ul>

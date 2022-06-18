@@ -1,11 +1,13 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Database from '@ioc:Adonis/Lucid/Database'
 import Post from 'App/Models/Post'
 import PostValidator from 'App/Validators/PostValidator'
 
 export default class BlogController {
 
-    async index({ view }: HttpContextContract) {
-        const posts = await Post.all()
+    async index({ view, request }: HttpContextContract) {
+        const page = request.input('page') || 1
+        const posts = await Database.from(Post.table).paginate(page, 2)
         return view.render('blog/index', {
             posts
         })
@@ -39,6 +41,13 @@ export default class BlogController {
             .save()
         
         session.flash({ success: 'Post updated successfully' })
+        return response.redirect().toRoute('home')
+    }
+
+    async destroy({ params, response, session }: HttpContextContract) {
+        const post = await Post.findOrFail(params.id)
+        post.delete()
+        session.flash({ success: 'Post deleted successfully' })
         return response.redirect().toRoute('home')
     }
         
