@@ -7,9 +7,10 @@ export default class BlogController {
 
     async index({ view, request }: HttpContextContract) {
         const page = request.input('page') || 1
-        const posts = await Database.from(Post.table).paginate(page, 2)
+        const posts = await Database.from(Post.table).paginate(page, 1)
         return view.render('blog/index', {
-            posts
+            posts,
+            page
         })
     }
 
@@ -19,7 +20,7 @@ export default class BlogController {
 
     async store({ request, response, session }: HttpContextContract) {
         const data = await request.validate(PostValidator)
-        const post = await Post.create({...data, online: data.online || false})
+        await Post.create({...data, online: data.online || false})
 
         session.flash({ success: 'Post created successfully' })
 
@@ -50,5 +51,5 @@ export default class BlogController {
         session.flash({ success: 'Post deleted successfully' })
         return response.redirect().toRoute('home')
     }
-        
+            
 }
