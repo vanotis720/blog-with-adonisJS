@@ -5,10 +5,19 @@ import PostValidator from 'App/Validators/PostValidator'
 
 export default class BlogController {
 
-    async index({ view, request }: HttpContextContract) {
+    async home({ view, request }: HttpContextContract) {
         const page = request.input('page') || 1
         const posts = await Database.from(Post.table).paginate(page, 1)
-        return view.render('blog/index', {
+        return view.render('index', {
+            posts,
+            page
+        })
+    }
+
+    async index({ view, request }: HttpContextContract) {
+        const page = request.input('page') || 1
+        const posts = await Database.from(Post.table).paginate(page, 4)
+        return view.render('article/index', {
             posts,
             page
         })
@@ -20,7 +29,7 @@ export default class BlogController {
 
     async store({ request, response, session }: HttpContextContract) {
         const data = await request.validate(PostValidator)
-        await Post.create({...data, online: data.online || false})
+        await Post.create({ ...data, online: data.online || false })
 
         session.flash({ success: 'Post created successfully' })
 
@@ -38,9 +47,9 @@ export default class BlogController {
         const post = await Post.findOrFail(params.id)
         const data = await request.validate(PostValidator)
         post
-            .merge({...data, online: data.online || false})
+            .merge({ ...data, online: data.online || false })
             .save()
-        
+
         session.flash({ success: 'Post updated successfully' })
         return response.redirect().toRoute('home')
     }
@@ -51,5 +60,5 @@ export default class BlogController {
         session.flash({ success: 'Post deleted successfully' })
         return response.redirect().toRoute('home')
     }
-            
+
 }

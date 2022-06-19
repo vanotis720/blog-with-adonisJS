@@ -4,7 +4,7 @@ module.exports = {
     "./resources/views/**/*.edge",
     "./resources/assets/ts/**/*.ts",
   ],
-  darkMode: media, // or 'class'
+  darkMode: 'media', // or 'class'
   theme: {
     extend: {},
   },

@@ -1,0 +1,61 @@
+<nav class="fixed z-10 w-full border-b bg-white md:absolute md:bg-transparent">
+    <div class="container m-auto px-2 md:px-12 lg:px-7">
+        <div class="flex flex-wrap items-center justify-between py-6 gap-6 md:py-4 md:gap-0">
+            <div class="w-full px-6 flex justify-between lg:w-max md:px-0">
+                <a href="{{ route('home') }}" aria-label="logo">
+                    <img src="images/logo.png" class="w-36" alt="tailus logo" width="144" height="68">
+                </a>
+
+                <button aria-label="humburger" id="hamburger" class="relative w-10 h-10 -mr-2 lg:hidden">
+                    <div aria-hidden="true" id="line"
+                        class="inset-0 w-6 h-0.5 m-auto rounded bg-gray-500 transtion duration-300"></div>
+                    <div aria-hidden="true" id="line2"
+                        class="inset-0 w-6 h-0.5 mt-2 m-auto rounded bg-gray-500 transtion duration-300"></div>
+                </button>
+            </div>
+
+            <div
+                class="hidden w-full lg:flex flex-wrap justify-between items-center space-y-12 p-6 rounded-xl bg-white md:w-8/12 md:space-y-0 md:p-0 md:flex-nowrap md:bg-transparent lg:w-7/12">
+                <div class="block w-full">
+                    <ul class="space-y-12 tracking-wide font-medium md:flex md:space-y-0">
+                        <li>
+                            <a href="{{ route('home') }}" class="block md:px-3">
+                                <div
+                                    class="relative text-cyan-800 before:absolute before:-bottom-7 before:w-full before:h-0.5 before:mx-auto before:mt-auto before:rounded-full before:bg-cyan-800">
+                                    <span>Accueil</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('blog.index') }}" class="block md:px-3 group">
+                                <div
+                                    class="relative text-gray-600 before:absolute before:-bottom-7 before:w-full before:h-0.5 before:mx-auto before:mt-auto before:rounded-full before:bg-cyan-800 before:transition before:scale-x-0 group-hover:before:scale-x-100">
+                                    <span class="transition group-hover:text-cyan-700">Articles</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('category.index') }}" class="block md:px-3 group">
+                                <div
+                                    class="relative text-gray-600 before:absolute before:-bottom-7 before:w-full before:h-0.5 before:mx-auto before:mt-auto before:rounded-full before:bg-cyan-800 before:transition before:scale-x-0 group-hover:before:scale-x-100">
+                                    <span class="transition group-hover:text-cyan-700">Categories</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="w-full md:w-max">
+                    <a href="{{ route('auth.login') }}">
+                        <button type="button" title="Se connecter"
+                            class="w-full py-3 px-6 text-center rounded-full transition bg-gray-900 hover:bg-cyan-500 active:bg-cyan-600 focus:bg-cyan-800 sm:w-max">
+                            <span class="block text-white text-sm">
+                                Se connecter
+                            </span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

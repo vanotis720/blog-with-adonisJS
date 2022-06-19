@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentification - develeve</title>
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="relative py-16
+                        before:absolute before:inset-0 before:w-full before:h-[50%] before:bg-gray-200">
+        <div class="relative container m-auto px-6 text-gray-500 md:px-12 xl:px-40">
+
+            <div class="m-auto space-y-8 md:w-8/12 lg:w-full">
+                <img src="images/logo.png" loading="lazy" class="w-36 ml-4" alt="tailus logo">
+                <div class="rounded-xl border bg-opacity-50 backdrop-blur-2xl bg-white shadow-xl">
+                    <div class="lg:grid lg:grid-cols-2">
+                        <div class="rounded-lg lg:block" hidden>
+                            <img src="images/smiling.webp" class="rounded-l-xl object-cover" loading="lazy" height=""
+                                width="" alt="music mood">
+                        </div>
+
+                        @!section('content')
+
+                    </div>
+                </div>
+                <div class="text-center space-x-4">
+                    <span>&copy; CodeLab DRC</span>
+                    <a href="{{ route('about') }}" class="text-sm hover:text-sky-900">À propos de nous</a>
+                    <a href="#" class="text-sm hover:text-sky-900">Confidentialité et conditions</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

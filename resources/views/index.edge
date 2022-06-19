@@ -1,4 +1,4 @@
-@layout('layout')
+@layout('layout/layout')
 @section('content')
 
 <div class="border-b">
@@ -6,7 +6,8 @@
 		<div class="flex items-center flex-wrap gap-12 px-2 md:px-0">
 			<div class="lg:w-6/12 lg:-ml-7">
 				<div class="relative">
-					<img src="images/shoes2.jpg" alt="shoes" loading="lazy" width="640" height="640">
+					<img src="images/pakata-goh-RDolnHtjVCY-unsplash.jpg" alt="shoes" loading="lazy" width="640"
+						height="640">
 					<div class="absolute bottom-2 right-2 bg-white">
 						<div class="flex p-1">
 							<a href="{{ page == 1 ? '#' :  '?page=' + (page - 1) }}">
