@@ -13,7 +13,7 @@
 
             @each(post in posts)
             <div class="group space-y-4">
-                <img src="images/woman.jpg" alt="art cover" loading="lazy" width="1000" height="667"
+                <img src="{{ mix('images/woman.jpg') }}" alt="art cover" loading="lazy" width="1000" height="667"
                     class="h-64 w-full object-cover object-top rounded-xl transition duration-500 group-hover:rounded-3xl">
                 <div class="space-y-2">
                     <span class="text-cyan-500">Frontend</span>
@@ -22,7 +22,7 @@
                         <p class="text-gray-600">{{ excerpt(post.content, 150) }}...</p>
                     </div>
                 </div>
-                <a href="{{ route('blog.edit', {id: post.id}) }}" class="block w-max text-cyan-600">Lire la suite</a>
+                <a href="{{ route('blog.show', {id: post.id}) }}" class="block w-max text-cyan-600">Lire la suite</a>
             </div>
             @endeach
         </div>
@@ -55,8 +55,8 @@
                     <li class="mx-2">
                         <a rel="next" href="{{ posts.lastPage == page ? '#' : '?page=' + (page * 1 + 1) }}">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                class="w-2 stroke-current {{ posts.lastPage == page ? 'text-gray-600' : 'text-gray-400 hover:text-white' }}" height="22.243"
-                                viewBox="0 0 12.621 22.243">
+                                class="w-2 stroke-current {{ posts.lastPage == page ? 'text-gray-600' : 'text-gray-400 hover:text-white' }}"
+                                height="22.243" viewBox="0 0 12.621 22.243">
                                 <path id="Icon_feather-chevron-left" data-name="Icon feather-chevron-left"
                                     d="M22.5,27l-9-9,9-9" transform="translate(24.621 29.121) rotate(180)" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>

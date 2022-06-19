@@ -23,6 +23,13 @@ export default class BlogController {
         })
     }
 
+    async show({ view, params }: HttpContextContract) {
+        const post = await Post.findOrFail(params.id)
+        return view.render('article/show', {
+            post,
+        })
+    }
+
     async create({ view }: HttpContextContract) {
         return view.render('blog/create')
     }

@@ -7,8 +7,8 @@
 		<div class="flex items-center flex-wrap gap-12 px-2 md:px-0">
 			<div class="lg:w-6/12 lg:-ml-7">
 				<div class="relative">
-					<img src="images/pakata-goh-RDolnHtjVCY-unsplash.jpg" alt="shoes" loading="lazy" width="640"
-						height="640">
+					<img src="{{ mix('images/pakata-goh-RDolnHtjVCY-unsplash.jpg') }}" alt="shoes" loading="lazy"
+						width="640" height="640">
 					<div class="absolute bottom-2 right-2 bg-white">
 						<div class="flex p-1">
 							<a href="{{ page == 1 ? '#' :  '?page=' + (page - 1) }}">
@@ -39,7 +39,7 @@
 				<div class="mt-16 space-y-8 lg:ml-32">
 					<p class="text-gray-700">{{ excerpt(post.content, 100) }}...</p>
 					<div class="flex space-x-4 ">
-						<a href="{{ route('blog.edit', {id: post.id}) }}">
+						<a href="{{ route('blog.show', {id: post.id}) }}">
 							<button type="button" title="Lire la suite"
 								class="w-full py-3 px-6 text-center rounded-full transition duration-300 bg-gray-900 hover:bg-cyan-500 active:bg-cyan-600 focus:bg-cyan-800 sm:w-max">
 								<span class="block text-white text-sm">

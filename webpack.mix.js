@@ -7,4 +7,5 @@ mix.ts("resources/assets/ts/app.ts", "js/app.js")
         "resources/assets/css/app.css",
         "css",
         [require("tailwindcss")]
-    );
+    )
+    .copy('resources/assets/images/', './public/images/');

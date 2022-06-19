@@ -1,4 +1,15 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/images/avatars/burger.png": "/images/avatars/burger.png",
+    "/images/avatars/fast-delivery.png": "/images/avatars/fast-delivery.png",
+    "/images/avatars/metal.png": "/images/avatars/metal.png",
+    "/images/avatars/package-delivery.png": "/images/avatars/package-delivery.png",
+    "/images/avatars/trowel.png": "/images/avatars/trowel.png",
+    "/images/emmanuel-ikwuegbu-UVlmNi4CaBQ-unsplash.jpg": "/images/emmanuel-ikwuegbu-UVlmNi4CaBQ-unsplash.jpg",
+    "/images/google.svg": "/images/google.svg",
+    "/images/logo.png": "/images/logo.png",
+    "/images/pakata-goh-RDolnHtjVCY-unsplash.jpg": "/images/pakata-goh-RDolnHtjVCY-unsplash.jpg",
+    "/images/smiling.webp": "/images/smiling.webp",
+    "/images/woman.jpg": "/images/woman.jpg"
 }

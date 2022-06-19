@@ -3,7 +3,7 @@
         <div class="flex flex-wrap items-center justify-between py-6 gap-6 md:py-4 md:gap-0">
             <div class="w-full px-6 flex justify-between lg:w-max md:px-0">
                 <a href="{{ route('home') }}" aria-label="logo">
-                    <img src="images/logo.png" class="w-36" alt="tailus logo" width="144" height="68">
+                    <img src="{{ mix('images/logo.png') }}" class="w-36" alt="develeve logo" width="144" height="68">
                 </a>
 
                 <button aria-label="humburger" id="hamburger" class="relative w-10 h-10 -mr-2 lg:hidden">
@@ -29,9 +29,9 @@
                         </li>
                         <li>
                             <a href="{{ route('blog.index') }}"
-                                class="block md:px-3 {{ (request.matchesRoute('blog.index')) ? '' : 'group' }}">
+                                class="block md:px-3 {{ (request.url().startsWith('/article')) ? '' : 'group' }}">
                                 <div
-                                    class="relative before:absolute before:-bottom-7 before:w-full before:h-0.5 before:mx-auto before:mt-auto before:rounded-full before:bg-cyan-800 {{ (request.matchesRoute('blog.index')) ? 'text-cyan-800' : 'text-gray-600 before:transition before:scale-x-0 group-hover:before:scale-x-100' }}">
+                                    class="relative before:absolute before:-bottom-7 before:w-full before:h-0.5 before:mx-auto before:mt-auto before:rounded-full before:bg-cyan-800 {{ (request.url().startsWith('/article')) ? 'text-cyan-800' : 'text-gray-600 before:transition before:scale-x-0 group-hover:before:scale-x-100' }}">
                                     <span class="transition group-hover:text-cyan-700">Articles</span>
                                 </div>
                             </a>
