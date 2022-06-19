@@ -21,10 +21,10 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/signin', 'AuthController.loginPage').as('login')
+Route.get('/login', 'AuthController.loginPage').as('login')
 Route.get('/signup', 'AuthController.registerPage').as('register')
 Route.post('/login', 'AuthController.login').as('auth.login')
-Route.post('/register', 'AuthController.register').as('auth.register')
+Route.post('/signup', 'AuthController.register').as('auth.register')
 
 Route.group(() => {
     Route.get('/create', 'BlogController.create').as('blog.create')
@@ -32,6 +32,18 @@ Route.group(() => {
     Route.get('/edit/:id', 'BlogController.edit').as('blog.edit')
     Route.post('/edit/:id', 'BlogController.update').as('blog.update')
     Route.delete('/edit/:id', 'BlogController.destroy')
+
+    Route.get('/dashboard', ({ view }: HttpContextContract) => {
+        return view.render('dashboard/home')
+    }).as('dashboard')
+
+    Route.get('/dashboard/articles', ({ view }: HttpContextContract) => {
+        return view.render('dashboard/home')
+    }).as('articles.index')
+
+    Route.get('dashboard/categories', ({ view }: HttpContextContract) => {
+        return view.render('dashboard/home')
+    }).as('categories.index')
 
     Route.get('logout', 'AuthController.logout').as('auth.logout')
 
@@ -48,10 +60,6 @@ Route.get('/categories', ({ view }: HttpContextContract) => {
 Route.get('/about', ({ view }: HttpContextContract) => {
     return view.render('about')
 }).as('about')
-
-Route.get('/dashboard', ({ view }: HttpContextContract) => {
-    return view.render('user/dashboard')
-}).as('dashboard')
 
 
 
