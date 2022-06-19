@@ -1,4 +1,6 @@
 @layout('layout/layout')
+@set('title', 'Apprendre et se rester informé')
+
 @section('content')
 <div class="py-16 bg-gray-50">
     <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6 lg:pt-[4.8rem] lg:px-7">
@@ -16,7 +18,7 @@
                 <div class="space-y-2">
                     <span class="text-cyan-500">Frontend</span>
                     <div class="space-y-4">
-                        <h4 class="text-2xl font-semibold text-gray-700">{{ post.title }}</h4>
+                        <h4 class="text-2xl font-semibold text-gray-700">{{ titleCase(post.title) }}</h4>
                         <p class="text-gray-600">{{ excerpt(post.content, 150) }}...</p>
                     </div>
                 </div>
