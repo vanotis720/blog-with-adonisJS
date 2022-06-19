@@ -9,7 +9,7 @@
     @endif
 
     @if(flashMessages.has(`errors.${name}`))
-    <div class="text-danger">
+    <div class="text-red-700 bg-red-100">
         {{ flashMessages.get(`errors.${name}`) }}
     </div>
     @endif

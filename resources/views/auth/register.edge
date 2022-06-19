@@ -31,32 +31,47 @@
         <span class="block w-max mx-auto -mt-3 px-4 text-center text-gray-500 bg-white">Ou</span>
     </div>
 
-    <form action="" class="space-y-8">
+    <form action="{{ route('auth.register') }}" method="POST" class="space-y-8">
 
         <div class="space-y-2">
             <label for="name" class="text-gray-700">Nom</label>
-            <input type="text" name="name" id="name" class="block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
+            <input type="text" name="name" id="name" value="{{ flashMessages.get('name') ?? '' }}" class="block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
                                                     focus:ring-2 focus:ring-sky-300 focus:outline-none
                                                     invalid:ring-2 invalid:ring-red-400"
                 placeholder="Entrer votre nom">
+                @if (flashMessages.has('errors.name'))
+                <small class="text-red-800">
+                    {{ flashMessages.get('errors.name') }}
+                </small>
+                @endif
         </div>
 
         <div class="space-y-2">
             <label for="email" class="text-gray-700">Email</label>
-            <input type="email" name="email" id="email" class="block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
+            <input type="email" name="email" id="email" value="{{ flashMessages.get('email') ?? '' }}" class="block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
                                                     focus:ring-2 focus:ring-sky-300 focus:outline-none
                                                     invalid:ring-2 invalid:ring-red-400"
                 placeholder="Entrer votre adresse email">
+                @if (flashMessages.has('errors.email'))
+                <small class="text-red-800">
+                    {{ flashMessages.get('errors.email') }}
+                </small>
+                @endif
         </div>
 
         <div>
             <div class="flex items-center justify-between">
-                <label for="pwd" class="text-gray-700">Mot de passe</label>
+                <label for="password" class="text-gray-700">Mot de passe</label>
             </div>
-            <input type="password" name="pwd" id="pwd" class="block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
+            <input type="password" name="password" id="password" class="block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
                                                     focus:ring-2 focus:ring-sky-300 focus:outline-none
                                                     invalid:ring-2 invalid:ring-red-400"
                 placeholder="Entrer le mot de passe">
+                @if (flashMessages.has('errors.password'))
+                <small class="text-red-800">
+                    {{ flashMessages.get('errors.password') }}
+                </small>
+                @endif
         </div>
 
         <button type="submit" class="w-full py-3 px-6 rounded-md bg-sky-600
@@ -66,7 +81,7 @@
 
         <p class="border-t pt-6 text-sm">
             Vous avez déjà un compte ?
-            <a href="{{ route('auth.login') }}" class="text-sky-500">Connectez-vous</a>
+            <a href="{{ route('login') }}" class="text-sky-500">Connectez-vous</a>
         </p>
     </form>
 </div>

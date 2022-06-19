@@ -4,7 +4,7 @@
 @section('content')
 <div class="p-6 sm:p-16">
     <h2 class="mb-8 text-2xl text-cyan-900 font-bold">Connectez-vous à votre compte</h2>
-
+    @!component('components.flash')
     <div class="mt-12 grid gap-6 sm:grid-cols-2">
         <button
             class="h-12 px-6 border border-blue-100 rounded-lg bg-blue-50 hover:bg-blue-100 focus:bg-blue-100 active:bg-blue-200">
@@ -31,23 +31,27 @@
         <span class="block w-max mx-auto -mt-3 px-4 text-center text-gray-500 bg-white">Ou</span>
     </div>
 
-    <form action="" class="space-y-8">
+    <form action="{{ route('auth.login') }}" method="POST" class="space-y-8">
         <div class="space-y-2">
             <label for="email" class="text-gray-700">Email</label>
             <input type="email" name="email" id="email" class="block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
-                                                    focus:ring-2 focus:ring-sky-300 focus:outline-none
-                                                    invalid:ring-2 invalid:ring-red-400"
-                placeholder="Entrer votre adresse email">
+                    focus:ring-2 focus:ring-sky-300 focus:outline-none invalid:ring-2 invalid:ring-red-400"
+                placeholder="Entrer votre adresse email" value="{{ flashMessages.get('email') ?? '' }}">
+            @if (flashMessages.has('errors.email'))
+            <small class="text-red-800">
+                {{ flashMessages.get('errors.email') }}
+            </small>
+            @endif
         </div>
 
         <div>
             <div class="flex items-center justify-between">
-                <label for="pwd" class="text-gray-700">Mot de passe</label>
+                <label for="password" class="text-gray-700">Mot de passe</label>
                 <button class="p-2 -mr-2" type="reset">
                     <span class="text-sm text-sky-500">Mot de passe oublié ?</span>
                 </button>
             </div>
-            <input type="password" name="pwd" id="pwd" class="block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
+            <input type="password" name="password" id="password" class="block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
                                                     focus:ring-2 focus:ring-sky-300 focus:outline-none
                                                     invalid:ring-2 invalid:ring-red-400"
                 placeholder="Entrer le mot de passe">
@@ -60,7 +64,7 @@
 
         <p class="border-t pt-6 text-sm">
             Vous n'avez pas de compte ?
-            <a href="{{ route('auth.register') }}" class="text-sky-500">Inscrivez-vous</a>
+            <a href="{{ route('register') }}" class="text-sky-500">Inscrivez-vous</a>
         </p>
     </form>
 </div>
