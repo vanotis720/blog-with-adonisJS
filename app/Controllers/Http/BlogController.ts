@@ -17,6 +17,8 @@ export default class BlogController {
     async index({ view, request }: HttpContextContract) {
         const page = request.input('page') || 1
         const posts = await Database.from(Post.table).paginate(page, 4)
+        posts.baseUrl('/articles')
+
         return view.render('article/index', {
             posts,
             page

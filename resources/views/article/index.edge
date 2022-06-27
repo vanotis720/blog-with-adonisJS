@@ -9,8 +9,10 @@
             <h2 class="text-2xl text-gray-900 font-bold md:text-4xl">Découvrez tous nos articles de blog</h2>
         </div>
 
+        @if(posts.empty)
+          
+        @else
         <div class="grid gap-12 md:grid-cols-2">
-
             @each(post in posts)
             <div class="group space-y-4">
                 <img src="{{ mix('images/woman.jpg') }}" alt="art cover" loading="lazy" width="1000" height="667"
@@ -44,12 +46,12 @@
                     </li>
 
                     @each(anchor in posts.getUrlsForRange(1, posts.lastPage))
-                    <a href="{{ anchor.url }}">
-                        <li
-                            class="rounded-full {{ (anchor.isActive) ? 'text-gray-900 bg-sky-400' : 'hover:text-white' }}">
-                            <span class="flex h-9 w-9 items-center justify-center">{{ anchor.page }}</span>
-                        </li>
-                    </a>
+                        <a href="{{ anchor.url }}">
+                            <li
+                                class="rounded-full {{ (anchor.isActive) ? 'text-gray-900 bg-sky-400' : 'hover:text-white' }}">
+                                <span class="flex h-9 w-9 items-center justify-center">{{ anchor.page }}</span>
+                            </li>
+                        </a>
                     @endeach
 
                     <li class="mx-2">
@@ -66,6 +68,7 @@
                 </ul>
             </nav>
         </div>
+        @endif
     </div>
 </div>
 @endsection
