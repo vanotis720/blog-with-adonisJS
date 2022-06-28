@@ -23,12 +23,12 @@
                 <img src="{{ mix('images/default.svg') }}" alt=""
                     class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
                 <h5 class="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">{{ auth.user.name }}</h5>
-                <span class="hidden text-gray-400 lg:block">Admin</span>
+                <span class="hidden text-gray-400 lg:block">Profile</span>
             </div>
 
             <ul class="space-y-2 tracking-wide mt-8">
                 <li>
-                    <a href="#" aria-label="dashboard"
+                    <a href="{{ route('dashboard.home') }}" aria-label="dashboard"
                         class="px-4 py-3 flex items-center space-x-4 {{ (request.matchesRoute('dashboard')) ? 'relative rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400' : 'rounded-md text-gray-600 group' }}">
                         <svg class="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
                             <path
@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('categories.index') }}"
+                    <a href="{{ route('dashboard.categories') }}"
                         class="px-4 py-3 flex items-center space-x-4 {{ (request.matchesRoute('categories.index')) ? 'relative rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400' : 'rounded-md text-gray-600 group' }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path class="fill-current text-gray-300 group-hover:text-cyan-300" fill-rule="evenodd"
@@ -56,7 +56,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('articles.index') }}"
+                    <a href="{{ route('dashboard.articles') }}"
                         class="px-4 py-3 flex items-center space-x-4 {{ (request.matchesRoute('articles.index')) ? 'relative rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400' : 'rounded-md text-gray-600 group' }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"

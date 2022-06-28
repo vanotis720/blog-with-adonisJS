@@ -33,17 +33,9 @@ Route.group(() => {
     Route.post('/edit/:id', 'BlogController.update').as('blog.update')
     Route.delete('/edit/:id', 'BlogController.destroy')
 
-    Route.get('/dashboard', ({ view }: HttpContextContract) => {
-        return view.render('dashboard/home')
-    }).as('dashboard')
-
-    Route.get('/dashboard/articles', ({ view }: HttpContextContract) => {
-        return view.render('dashboard/home')
-    }).as('articles.index')
-
-    Route.get('dashboard/categories', ({ view }: HttpContextContract) => {
-        return view.render('dashboard/home')
-    }).as('categories.index')
+    Route.get('/dashboard', 'dashboard/DashboardController.home').as('dashboard.home')
+    Route.get('/dashboard/articles', 'dashboard/DashboardController.articles').as('dashboard.articles')
+    Route.get('/dashboard/categories', 'dashboard/DashboardController.categories').as('dashboard.categories')
 
     Route.get('logout', 'AuthController.logout').as('auth.logout')
 

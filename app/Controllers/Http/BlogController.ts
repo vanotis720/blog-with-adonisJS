@@ -23,9 +23,6 @@ export default class BlogController {
             .orderBy('created_at', 'desc')
             .preload('category')
             .paginate(page, 4)
-
-    
-        
         posts.baseUrl('/articles')
 
         return view.render('articles/index', {
