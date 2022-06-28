@@ -20,8 +20,12 @@ export default class BlogController {
         posts.baseUrl('/articles')
 
         console.log(posts);
-        if (Object.keys(posts).length === 0)
-            console.log('mpty');
+        if (posts.isEmpty) {
+            console.log('empty');
+        }
+        else {
+            console.log('pas vide');
+        }
         
         return view.render('article/index', {
             posts,

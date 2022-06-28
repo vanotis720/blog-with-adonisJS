@@ -10,7 +10,9 @@ import Application from '@ioc:Adonis/Core/Application'
 import { DatabaseConfig } from '@ioc:Adonis/Lucid/Database'
 var Url = require('url-parse');
 
-const CLEARDB_DATABASE_URL = new Url(Env.get('CLEARDB_DATABASE_URL'))
+const DATABASE_URL = new Url(Env.get('CLEARDB_DATABASE_URL'));
+
+console.log(DATABASE_URL);
 
 const databaseConfig: DatabaseConfig = {
   /*
@@ -57,13 +59,24 @@ const databaseConfig: DatabaseConfig = {
     mysql: {
       client: 'mysql',
       connection: {
-        host: CLEARDB_DATABASE_URL.host as string,
+        host: DATABASE_URL.host as string,
         port: Number(''),
-        user: CLEARDB_DATABASE_URL.username as string,
-        password: CLEARDB_DATABASE_URL.password as string,
-        database: CLEARDB_DATABASE_URL.pathname.substr(1) as string
+        user: DATABASE_URL.username as string,
+        password: DATABASE_URL.password as string,
+        database: DATABASE_URL.pathname.substr(1) as string
       },
       healthCheck: false,
+    },
+
+    mysqlocal: {
+      client: 'mysql',
+      connection: {
+        host: Env.get('DB_HOST', 'localhost'),
+        port: Env.get('DB_PORT', '3306'),
+        user: Env.get('DB_USER', 'vanotis720'),
+        password: Env.get('DB_PASSWORD', '1234'),
+        database: Env.get('DB_DATABASE', 'vanotis720_develeve'),
+      }
     },
 
   }
