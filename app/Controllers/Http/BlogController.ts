@@ -19,6 +19,10 @@ export default class BlogController {
         const posts = await Database.from(Post.table).paginate(page, 4)
         posts.baseUrl('/articles')
 
+        console.log(posts);
+        if (Object.keys(posts).length === 0)
+            console.log('mpty');
+        
         return view.render('article/index', {
             posts,
             page
