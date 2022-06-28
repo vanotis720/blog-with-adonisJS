@@ -53,9 +53,8 @@ Route.get('/', 'BlogController.home').as('home')
 Route.get('/articles', 'BlogController.index').as('blog.index')
 Route.get('/article/:id', 'BlogController.show').as('blog.show')
 
-Route.get('/categories', ({ view }: HttpContextContract) => {
-    return view.render('category/index')
-}).as('category.index')
+Route.get('/categories', 'CategoryController.index').as('category.index')
+Route.get('/category/:slug', 'CategoryController.show').as('category.show')
 
 Route.get('/about', ({ view }: HttpContextContract) => {
     return view.render('about')

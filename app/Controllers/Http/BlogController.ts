@@ -16,18 +16,19 @@ export default class BlogController {
 
     async index({ view, request }: HttpContextContract) {
         const page = request.input('page') || 1
-        const posts = await Database.from(Post.table).paginate(page, 4)
+
+        const posts = await Post
+            .query()
+            .where('online', 1)
+            .orderBy('created_at', 'desc')
+            .preload('category')
+            .paginate(page, 4)
+
+    
+        
         posts.baseUrl('/articles')
 
-        console.log(posts);
-        if (posts.isEmpty) {
-            console.log('empty');
-        }
-        else {
-            console.log('pas vide');
-        }
-        
-        return view.render('article/index', {
+        return view.render('articles/index', {
             posts,
             page
         })
@@ -35,7 +36,7 @@ export default class BlogController {
 
     async show({ view, params }: HttpContextContract) {
         const post = await Post.findOrFail(params.id)
-        return view.render('article/show', {
+        return view.render('articles/show', {
             post,
         })
     }
