@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Category from 'App/Models/Category';
+import Post from 'App/Models/Post';
 
 export default class DashboardController {
 
@@ -8,7 +9,14 @@ export default class DashboardController {
     }
 
     async articles({ view }: HttpContextContract) {
-        return view.render('dashboard/articles')
+        const posts = await Post
+            .query()
+            .where('online', 1)
+            .orderBy('created_at', 'desc')
+            .preload('category')
+            .preload('user')
+
+        return view.render('dashboard/articles', { posts });
     }
 
     async categories({ view }: HttpContextContract) {

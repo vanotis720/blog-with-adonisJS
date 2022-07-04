@@ -39,7 +39,7 @@ export default class BlogController {
     }
 
     async create({ view }: HttpContextContract) {
-        return view.render('blog/create')
+        return view.render('dashboard/create')
     }
 
     async store({ request, response, session }: HttpContextContract) {
@@ -53,7 +53,7 @@ export default class BlogController {
 
     async edit({ params, view }: HttpContextContract) {
         const post = await Post.findOrFail(params.id)
-        return view.render('blog/edit', {
+        return view.render('articles/edit', {
             post
         })
     }
