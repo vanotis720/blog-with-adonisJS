@@ -1,4 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Category from 'App/Models/Category';
 
 export default class DashboardController {
 
@@ -11,6 +12,7 @@ export default class DashboardController {
     }
 
     async categories({ view }: HttpContextContract) {
-        return view.render('dashboard/categories')
+        const categories = await Category.all();
+        return view.render('dashboard/categories', { categories });
     }
 }
