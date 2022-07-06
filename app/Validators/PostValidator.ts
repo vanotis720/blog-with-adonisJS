@@ -2,7 +2,7 @@ import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class PostValidator {
-  constructor(protected ctx: HttpContextContract) {}
+  constructor(protected ctx: HttpContextContract) { }
 
   /*
    * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.
@@ -24,14 +24,22 @@ export default class PostValidator {
    *    ```
    */
   public schema = schema.create({
-    title: schema.string({ trim: true}, [
+    title: schema.string({ trim: true }, [
       rules.required(),
       rules.maxLength(50),
-      rules.minLength(15),
+      rules.minLength(10),
     ]),
-    content: schema.string({trim: true}, [
+    content: schema.string({ trim: true }, [
       rules.required(),
       rules.minLength(50),
+    ]),
+    thumbnail: schema.file({
+      size: '2mb',
+      extnames: ['jpg', 'gif', 'png'],
+    }),
+    category_id: schema.string({}, [
+      rules.required(),
+      rules.exists({ table: 'categories', column: 'id' }),
     ]),
     online: schema.boolean.nullableAndOptional(),
   })
@@ -53,5 +61,10 @@ export default class PostValidator {
     'title.minLength': 'Le titre doit contenir au moins 15 caractères',
     'content.required': 'Le contenu est requis',
     'content.minLength': 'Le contenu doit contenir au moins 50 caractères',
+    'category_id.required': 'La catégorie est requise',
+    'thumbnail.required': 'L\'image est requise',
+    'thumbnail.file': 'L\'image doit être une image',
+    'thumbnail.size': 'L\'image doit être inférieure à 2Mo',
+    'thumbnail.extnames': 'L\'image doit être au format jpg, gif ou png',
   }
 }

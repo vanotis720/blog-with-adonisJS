@@ -12,7 +12,7 @@ export default class DashboardController {
         const posts = await Post
             .query()
             .where('online', 1)
-            .where('user_id', auth.user.id)
+            .where('user_id', auth.user!.id)
             .orderBy('created_at', 'desc')
             .preload('category')
 

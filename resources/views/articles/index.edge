@@ -10,12 +10,12 @@
         </div>
 
         @if(posts.isEmpty)
-            @include('partials.empty')
+        @include('partials.empty')
         @else
         <div class="grid gap-12 md:grid-cols-2">
             @each(post in posts)
             <div class="group space-y-4">
-                <img src="{{ mix('images/woman.jpg') }}" alt="art cover" loading="lazy" width="1000" height="667"
+                <img src="{{ `/uploads/${post.thumbnail}` }}" alt="art cover" loading="lazy" width="1000" height="667"
                     class="h-64 w-full object-cover object-top rounded-xl transition duration-500 group-hover:rounded-3xl">
                 <div class="space-y-2">
                     <span class="text-cyan-500">{{ post.category.name }}</span>

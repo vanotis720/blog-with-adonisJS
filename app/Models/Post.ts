@@ -43,5 +43,9 @@ export default class Post extends BaseModel {
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
 
+  // return file thumbnail
+  public getThumbnail(): string {
+    return this.thumbnail ? `/uploads/${this.thumbnail}` : '/uploads/default.png'
+  }
 
 }

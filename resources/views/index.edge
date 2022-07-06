@@ -8,10 +8,10 @@
 		@include('partials.empty')
 		@else
 		<div class="flex items-center flex-wrap gap-12 px-2 md:px-0">
+			@each(post in posts)
 			<div class="lg:w-6/12 lg:-ml-7">
 				<div class="relative">
-					<img src="{{ mix('images/pakata-goh-RDolnHtjVCY-unsplash.jpg') }}" alt="shoes" loading="lazy"
-						width="640" height="640">
+					<img src="{{ `/uploads/${post.thumbnail}` }}" alt="shoes" loading="lazy" width="640" height="640">
 					<div class="absolute bottom-2 right-2 bg-white">
 						<div class="flex p-1">
 							<a href="{{ page == 1 ? '#' :  '?page=' + (page - 1) }}">
@@ -36,7 +36,6 @@
 					</div>
 				</div>
 			</div>
-			@each(post in posts)
 			<div class="relative lg:w-6/12 lg:-ml-20">
 				<h1 class="font-bold text-5xl sm:text-6xl md:text-7xl xl:text-8xl">{{ titleCase(post.title) }}.</h1>
 				<div class="mt-16 space-y-8 lg:ml-32">

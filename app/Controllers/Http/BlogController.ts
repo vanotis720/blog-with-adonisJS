@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
+import Category from 'App/Models/Category'
 import Post from 'App/Models/Post'
 import PostValidator from 'App/Validators/PostValidator'
 
@@ -39,16 +40,29 @@ export default class BlogController {
     }
 
     async create({ view }: HttpContextContract) {
-        return view.render('dashboard/create')
+        const categories = await Category.query().orderBy('created_at', 'asc');
+        return view.render('dashboard/create', { categories })
     }
 
-    async store({ request, response, session }: HttpContextContract) {
+    async store({ request, response, session, auth }: HttpContextContract) {
         const data = await request.validate(PostValidator)
-        await Post.create({ ...data, online: data.online || false })
+        const slug = data.title.toLowerCase().replace(/\s/g, '-')
+        const user_id = auth.user!.id
+        const coverImage = request.file('thumbnail')!
+        var thumbnail = '';
+
+
+        if (coverImage) {
+            // const path = `${process.cwd()}/public/uploads/`
+            // await coverImage.move(path);
+            await coverImage.moveToDisk('./')
+            thumbnail = coverImage.fileName ? coverImage.fileName : 'default.png';
+        }
+
+        await Post.create({ ...data, online: data.online || true, slug: slug, userId: user_id, thumbnail: thumbnail })
 
         session.flash({ success: 'Post created successfully' })
-
-        return response.redirect().toRoute('home')
+        return response.redirect().toRoute('dashboard.articles')
     }
 
     async edit({ params, view }: HttpContextContract) {
@@ -58,22 +72,32 @@ export default class BlogController {
         })
     }
 
-    async update({ params, request, response, session }: HttpContextContract) {
-        const post = await Post.findOrFail(params.id)
-        const data = await request.validate(PostValidator)
-        post
-            .merge({ ...data, online: data.online || false })
-            .save()
+    // async update({ params, request, response, session }: HttpContextContract) {
+    //     const post = await Post.findOrFail(params.id)
+    //     const data = await request.validate(PostValidator)
+    //     post
+    //         .merge({ ...data, online: data.online || false })
+    //         .save()
 
-        session.flash({ success: 'Post updated successfully' })
-        return response.redirect().toRoute('home')
-    }
+    //     session.flash({ success: 'Post updated successfully' })
+    //     return response.redirect().toRoute('home')
+    // }
 
     async destroy({ params, response, session }: HttpContextContract) {
         const post = await Post.findOrFail(params.id)
         post.delete()
         session.flash({ success: 'Post deleted successfully' })
         return response.redirect().toRoute('home')
+    }
+
+    async saveFile({ request }) {
+        const file = request.file('thumbnail', { extnames: ['jpg', 'png'], size: '2mb' })
+        if (file) {
+            const path = `${process.cwd()}/public/uploads/${file.clientName}`
+            await file.move(path)
+            return `/uploads/${file.clientName}`;
+        }
+        return '/uploads/default.png';
     }
 
 }
