@@ -8,13 +8,13 @@ export default class DashboardController {
         return view.render('dashboard/home')
     }
 
-    async articles({ view }: HttpContextContract) {
+    async articles({ view, auth }: HttpContextContract) {
         const posts = await Post
             .query()
             .where('online', 1)
+            .where('user_id', auth.user.id)
             .orderBy('created_at', 'desc')
             .preload('category')
-            .preload('user')
 
         return view.render('dashboard/articles', { posts });
     }
