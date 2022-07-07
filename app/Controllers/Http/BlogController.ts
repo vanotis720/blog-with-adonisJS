@@ -51,7 +51,6 @@ export default class BlogController {
         const coverImage = request.file('thumbnail')!
         var thumbnail = '';
 
-
         if (coverImage) {
             // const path = `${process.cwd()}/public/uploads/`
             // await coverImage.move(path);

@@ -1,8 +1,7 @@
 @layout('layout.dashboard')
 @section('content')
-
 <form class="space-y-8 divide-y divide-gray-200" method="POST" action="{{ route('blog.store') }}"
-    enctype="multipart/form-data">
+    enctype="multipart/form-data" id="post-article">
     <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
         <div>
             <div>
@@ -84,7 +83,7 @@
                     @endif
                 </div>
 
-                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                {{-- <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                     <label for="content" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                         Contenu
                     </label>
@@ -100,7 +99,9 @@
                         {{ flashMessages.get('errors.content') }}
                     </small>
                     @endif
-                </div>
+                </div> --}}
+
+                <div id="editor" class="add-new-post__editor mb-1"></div>
             </div>
         </div>
     </div>
@@ -113,5 +114,4 @@
         </div>
     </div>
 </form>
-
 @endsection
